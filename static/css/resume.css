@@ -1,0 +1,39 @@
+.resume {
+  border-top: 1px solid var(--line);
+}
+
+.resume h2 {
+  font-size: clamp(52px, 7vw, 88px);
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  margin-top: 60px;
+}
+
+.resume-grid h3 {
+  font: 18px "Barlow Condensed";
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.resume-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.resume-item small {
+  color: var(--cyan);
+}
+
+.resume-item h4 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.resume-item b {
+  font-size: 11px;
+  color: var(--red);
+}

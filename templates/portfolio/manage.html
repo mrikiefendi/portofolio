@@ -1,0 +1,39 @@
+{% load static %}<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kelola {{ label }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body class="admin-body">
+    <header class="navbar">
+      <a class="brand" href="/dashboard/">← DASHBOARD</a>
+      <nav><a href="/">WEBSITE</a><a href="/accounts/logout/">LOGOUT</a></nav>
+    </header>
+    <main class="admin-main">
+      <p class="eyebrow">CONTENT MANAGER</p>
+      <h1>MANAGE <em>{{ label|upper }}.</em></h1>
+      <a class="solid-btn" href="{% url 'add' section %}"
+        >+ TAMBAH {{ label|upper }}</a
+      >
+      <div class="manage-list">
+        {% for item in items %}
+        <div class="manage-row">
+          <strong>{{ item }}</strong
+          ><span
+            ><a href="{% url 'edit' section item.pk %}">EDIT</a> ·
+            <a class="danger" href="{% url 'delete' section item.pk %}"
+              >HAPUS</a
+            ></span
+          >
+        </div>
+        {% empty %}
+        <p class="muted">
+          Belum ada data. Klik tombol tambah untuk membuat data pertama.
+        </p>
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{% load static %}<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hapus data</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body class="admin-body">
+    <main class="admin-main">
+      <h1>HAPUS <em>DATA?</em></h1>
+      <p>Yakin ingin menghapus <b>{{ item }}</b>?</p>
+      <form method="post">
+        {% csrf_token %}<button class="solid-btn danger-btn">YA, HAPUS</button>
+        <a href="{% url 'manage' section %}">BATAL</a>
+      </form>
+    </main>
+  </body>
+</html>

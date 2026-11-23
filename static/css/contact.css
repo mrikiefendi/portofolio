@@ -1,0 +1,82 @@
+.contact {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 130px;
+  background: radial-gradient(ellipse at 50% 65%, #2800004d, transparent 50%);
+}
+
+.contact h2 {
+  font-size: clamp(60px, 8vw, 100px);
+}
+
+.contact .muted {
+  margin: 0 auto;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  width: 155px;
+  height: 150px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  border: 1px solid var(--line);
+  border-radius: 18px;
+
+  color: #c3c9ca;
+  text-decoration: none;
+  font: 12px "DM Mono";
+
+  transition: 0.25s ease;
+}
+
+.socials a svg {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.social-email svg {
+  transform: scale(1.1);
+}
+
+.social-whatsapp svg {
+  transform: scale(0.9);
+}
+
+.social-instagram svg {
+  transform: scale(1.1);
+}
+
+.social-linkedin svg {
+  transform: scale(1.15);
+}
+
+.social-github svg {
+  transform: scale(0.9);
+}
+
+.socials a span {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.socials a:hover {
+  color: var(--red);
+  border-color: var(--red);
+  transform: translateY(-4px);
+}

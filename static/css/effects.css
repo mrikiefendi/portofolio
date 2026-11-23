@@ -1,0 +1,219 @@
+.hero-luxe {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-luxe::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  z-index: 0;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(0, 201, 232, 0.22) 55deg,
+    transparent 120deg,
+    rgba(255, 1, 1, 0.18) 210deg,
+    transparent 290deg
+  );
+  filter: blur(65px);
+  opacity: 0.65;
+  animation: heroAuraRotate 22s linear infinite;
+}
+
+.hero-luxe::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 55%,
+    rgba(0, 201, 232, 0.19),
+    transparent 48%
+  );
+}
+
+.hero-luxe #particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-luxe .hero-outline {
+  z-index: 2;
+}
+
+.hero-luxe .hero-portrait {
+  z-index: 3;
+  width: min(42vw, 600px);
+  height: 96%;
+  bottom: 0;
+}
+
+.hero-luxe .hero-side {
+  z-index: 4;
+}
+
+.hero-luxe .hero-topline {
+  z-index: 5;
+}
+
+.hero-luxe .hero-switch {
+  z-index: 10;
+}
+
+.hero-luxe .hero-portrait img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 0 25px rgba(0, 201, 232, 0.2))
+    drop-shadow(0 20px 40px #000);
+}
+
+.hero-luxe .portrait-ring {
+  width: 105%;
+  top: 3%;
+  border: 1px solid rgba(0, 201, 232, 0.55);
+  box-shadow:
+    0 0 35px rgba(0, 201, 232, 0.2),
+    0 0 90px rgba(0, 201, 232, 0.12),
+    inset 0 0 60px rgba(0, 201, 232, 0.13);
+  animation: portraitPulse 4s ease-in-out infinite;
+}
+
+.hero-luxe[data-mode="creative"] {
+  background:
+    radial-gradient(ellipse at 50% 53%, rgba(255, 1, 1, 0.3), transparent 50%),
+    #080000;
+}
+
+.hero-luxe[data-mode="creative"]::after {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(255, 1, 1, 0.23),
+    transparent 52%
+  );
+}
+
+.hero-luxe[data-mode="creative"] .portrait-ring {
+  border-color: rgba(255, 1, 1, 0.7);
+  box-shadow:
+    0 0 35px rgba(255, 1, 1, 0.3),
+    0 0 100px rgba(255, 1, 1, 0.2),
+    inset 0 0 60px rgba(255, 1, 1, 0.18);
+}
+
+.hero-luxe[data-mode="creative"] .hero-portrait img {
+  filter: drop-shadow(0 0 30px rgba(255, 1, 1, 0.3))
+    drop-shadow(0 20px 40px #000);
+}
+
+.hero-luxe[data-mode="developer"] {
+  background:
+    radial-gradient(
+      ellipse at 50% 53%,
+      rgba(0, 201, 232, 0.3),
+      transparent 50%
+    ),
+    #050708;
+}
+
+.hero-luxe[data-mode="creative"] .hero-left {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.hero-luxe[data-mode="creative"] .hero-right {
+  filter: blur(5px);
+  opacity: 0.22;
+  transform: translateX(18px) scale(0.96);
+}
+
+.hero-luxe[data-mode="developer"] .hero-left {
+  filter: blur(5px);
+  opacity: 0.22;
+  transform: translateX(-18px) scale(0.96);
+}
+
+.hero-luxe[data-mode="developer"] .hero-right {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.hero-luxe .switch-btn.active {
+  color: #fff;
+  background: rgba(0, 201, 232, 0.12);
+  box-shadow: 0 0 22px rgba(0, 201, 232, 0.25);
+}
+
+.hero-luxe[data-mode="creative"] .switch-btn.active {
+  border-color: #ff0000;
+  color: #ff4d4d;
+  background: rgba(255, 1, 1, 0.12);
+  box-shadow: 0 0 22px rgba(255, 1, 1, 0.25);
+}
+
+@keyframes heroAuraRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes portraitPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.07);
+    opacity: 1;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

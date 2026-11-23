@@ -1,0 +1,26 @@
+{% load static %}<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Form {{ label }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body class="admin-body">
+    <header class="navbar">
+      <a class="brand" href="{% url 'manage' section %}">← KEMBALI</a>
+    </header>
+    <main class="admin-main form-main">
+      <p class="eyebrow">CONTENT MANAGER</p>
+      <h1>
+        {% if instance %}EDIT{% else %}ADD{% endif %}
+        <em>{{ label|upper }}.</em>
+      </h1>
+      <form method="post" enctype="multipart/form-data" class="edit-form">
+        {% csrf_token %}{{ form.as_p }}<button class="solid-btn" type="submit">
+          SIMPAN DATA
+        </button>
+      </form>
+    </main>
+  </body>
+</html>

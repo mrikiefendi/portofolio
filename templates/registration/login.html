@@ -1,0 +1,19 @@
+{% load static %}<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body class="admin-body">
+    <main class="login-box">
+      <p class="eyebrow">PRIVATE AREA</p>
+      <h1>ADMIN <em>LOGIN.</em></h1>
+      <form method="post">
+        {% csrf_token %}{{ form.as_p }}<button class="solid-btn">LOGIN</button>
+      </form>
+      <a href="/">← Kembali ke website</a>
+    </main>
+  </body>
+</html>

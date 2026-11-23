@@ -1,0 +1,363 @@
+{% load static %}
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {% if profile %}{{ profile.name }}{% else %}M Riki Efendi{% endif %} —
+      Portfolio
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a class="brand" href="#home">MRIKI<span>EFENDI</span></a>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Buka navigasi"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+      <nav id="nav">
+        <a href="#home">Beranda</a><a href="#about">Tentang Saya</a
+        ><a href="#skills">Keahlian</a> <a href="#works">Karya</a
+        ><a href="#resume">Riwayat</a><a class="cyan" href="#contact">Kontak</a>
+      </nav>
+    </header>
+    <main>
+      <section class="mobile-showcase" id="mobileHome" data-mode="developer">
+        <div class="mobile-photo">
+          {% if profile %} {% if profile.photo %}
+          <img
+            src="{{ profile.photo.url }}"
+            alt="Foto profil {{ profile.name }}"
+          />
+          {% else %}
+          <div class="portrait-placeholder">YOUR PHOTO</div>
+          {% endif %} {% else %}
+          <div class="portrait-placeholder">YOUR PHOTO</div>
+          {% endif %}
+        </div>
+
+        <button
+          class="mobile-choice creative-choice"
+          data-mobile-mode="creative"
+        >
+          CREATIVE →
+        </button>
+
+        <button
+          class="mobile-choice developer-choice active"
+          data-mobile-mode="developer"
+        >
+          ← DEVELOPER
+        </button>
+
+        <div class="mobile-swipe-hint">SWIPE LEFT / RIGHT</div>
+      </section>
+
+      <section class="hero-luxe" id="home" data-mode="developer">
+        <canvas id="particles" aria-hidden="true"></canvas>
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="hero-outline" id="heroOutline" aria-hidden="true">
+          DEVELOPER
+        </div>
+        <div class="hero-topline">
+          <span>01 /MUHAMAD RIKI EFENDI</span
+          ><span>SPEAKING · COMMUNICATION · CREATIVITY ●</span>
+        </div>
+        <div class="hero-side hero-left">
+          <div class="mode-label">● SPEAKER · TALENT · CREATOR</div>
+          <h1>CREATIVE<br /><em>TALENT</em></h1>
+          <div class="accent-line"></div>
+          <p>
+            Mengembangkan kemampuan komunikasi melalui pengalaman
+            sebagai Master of Ceremony dan Live Host. Senang
+            berinteraksi dengan audiens, menyampaikan informasi,
+            serta terus belajar meningkatkan kepercayaan diri
+            dan kreativitas.
+          </p>
+          <a href="#works" class="hero-cta red-cta">EXPLORE CREATIVE PORTO →</a>
+        </div>
+        <div class="hero-portrait">
+          <div class="portrait-ring"></div>
+          {% if profile %} {% if profile.photo %}
+          <img src="{{ profile.photo.url }}" alt="Foto {{ profile.name }}" />
+          {% else %}
+          <div class="portrait-placeholder">UPLOAD<br />YOUR PHOTO</div>
+          {% endif %} {% else %}
+          <div class="portrait-placeholder">UPLOAD<br />YOUR PHOTO</div>
+          {% endif %}
+          <span class="portrait-caption">
+            {% if profile %} {{ profile.name|upper }} {% else %} MUHAMAD RIKI
+            EFENDI {% endif %}
+          </span>
+        </div>
+        <div class="hero-side hero-right">
+          <div class="mode-label cyan-label">INFORMATICS STUDENT · LEARNING · BUILDING ●</div>
+          <h2>ASPIRING<br /><em>DEVELOPER</em></h2>
+          <div class="accent-line"></div>
+          <p>
+            Mahasiswa Informatika yang antusias mendalami Web Development. Fokus
+            membangun antarmuka yang bersih dan fungsional.
+          </p>
+          <a href="#skills" class="hero-cta cyan-cta">← VIEW TECH PROJECT</a>
+        </div>
+        <div class="hero-switch" aria-label="Pilih fokus tampilan">
+          <button
+            type="button"
+            class="switch-btn active"
+            data-mode="developer"
+            aria-pressed="true"
+          >
+            01 / ASPIRING DEVELOPER
+          </button>
+          <button
+            type="button"
+            class="switch-btn"
+            data-mode="creative"
+            aria-pressed="false"
+          >
+            02 / CREATIVE TALENT
+          </button>
+        </div>
+      </section>
+      <section class="section about" id="about">
+        <p class="eyebrow">01 / INTRODUCTION</p>
+        <h2>THE <em>LOGIC</em><br />&amp; THE <strong>CREATIVE.</strong></h2>
+        <div class="two-cards">
+          <article class="info-card cyan-line">
+            <small>— INFORMATICS STUDENT</small>
+            <p>
+              Saya mendalami dunia pengembangan web, sistem informasi, UI/UX,
+              dan front-end development. Fokus pada penguatan logika pemrograman
+              dan pengalaman pengguna.
+            </p>
+          </article>
+          <article class="info-card red-line">
+            <small>— CREATIVE LEARNER</small>
+            <p>
+              Di luar coding, saya mengeksplorasi dunia visual, komunikasi, dan
+              kreativitas. Saya percaya teknologi dan desain dapat bekerja
+              bersama untuk menyampaikan ide.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="section" id="skills">
+        <div class="section-heading">
+          <p class="eyebrow">02 / CAPABILITIES</p>
+          <h2>TECH <em>STACK.</em></h2>
+        </div>
+        <div class="skill-grid">
+          {% for skill in skills %}
+          <div class="skill">
+            <b>{{ skill.icon_text|default:"✦" }}</b
+            ><span>{{ skill.name }}</span>
+          </div>
+          {% empty %}
+          <p class="muted">Belum ada skill. Tambahkan melalui dashboard.</p>
+          {% endfor %}
+        </div>
+      </section>
+      <section class="section" id="works">
+        <div class="section-heading">
+          <p class="eyebrow">03 / SELECTED WORKS</p>
+          <h2><em>PROJECTS</em> &amp; <strong>WORKS.</strong></h2>
+        </div>
+        <div class="project-grid">
+          {% for project in projects %}
+          <article class="project-card">
+            <div class="project-image">
+              {% if project.image %}<img
+                src="{{ project.image.url }}"
+                alt="{{ project.title }}"
+              />{% else %}
+              <div class="image-placeholder">PROJECT<br />PREVIEW</div>
+              {% endif %}
+            </div>
+            <div class="project-info">
+              <small>{{ project.category|default:"DEVELOPMENT" }}</small>
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.description }}</p>
+              <div class="tags">{{ project.technologies }}</div>
+              {% if project.url %}<a
+                href="{{ project.url }}"
+                target="_blank"
+                rel="noopener"
+                >VIEW PROJECT ↗</a
+              >{% endif %}
+            </div>
+          </article>
+          {% empty %}
+          <p class="muted">Belum ada project. Tambahkan melalui dashboard.</p>
+          {% endfor %}
+        </div>
+      </section>
+      <section class="section resume" id="resume">
+        <p class="eyebrow">04 / PROFESSIONAL PATH</p>
+        <h2>ACADEMIC <em>&amp; TRACK.</em></h2>
+        <div class="resume-grid">
+          <div>
+            <h3>◇ EDUCATION</h3>
+            {% for x in education %}
+            <article class="resume-item">
+              <small>{{ x.period }}</small>
+              <h4>{{ x.institution }}</h4>
+              <b>{{ x.program }}</b>
+              <p>{{ x.description }}</p>
+            </article>
+            {% empty %}
+            <p class="muted">Tambahkan pendidikan di dashboard.</p>
+            {% endfor %}
+          </div>
+          <div>
+            <h3>♧ EXPERIENCE</h3>
+            {% for x in experiences %}
+            <article class="resume-item">
+              <small>{{ x.period }}</small>
+              <h4>{{ x.position }}</h4>
+              <b>{{ x.organization }}</b>
+              <p>{{ x.description }}</p>
+            </article>
+            {% empty %}
+            <p class="muted">Tambahkan pengalaman di dashboard.</p>
+            {% endfor %}
+          </div>
+          <div>
+            <h3>♙ ORGANIZATIONS &amp; LEADERSHIP</h3>
+            {% for x in leadership %}
+            <article class="resume-item">
+              <h4>{{ x.position }}</h4>
+              <b>{{ x.organization }}</b>
+              <p>{{ x.description }}</p>
+            </article>
+            {% empty %}
+            <p class="muted">Tambahkan organisasi di dashboard.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <section class="section contact" id="contact">
+        <p class="eyebrow">05 / GET IN TOUCH</p>
+        <h2>LET'S <strong>CONNECT.</strong></h2>
+        <p class="muted">
+          Feel free to reach out for collaborations or just a friendly hello.
+        </p>
+        <div class="socials">
+          {% if profile and profile.email %}
+          <a href="mailto:{{ profile.email }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect
+                x="3"
+                y="5"
+                width="18"
+                height="14"
+                rx="2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M4 7l8 7 8-7"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>EMAIL</span>
+          </a>
+          {% endif %} {% if profile and profile.whatsapp %}
+          <a
+            href="https://wa.me/{{ profile.whatsapp }}"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.3-.7-1.5-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.1-.3.2-.5.1-.3-.1-1-.4-1.9-1.2-.7-.6-1.1-1.3-1.2-1.5-.1-.2 0-.3.1-.4l.4-.5c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2.9.3 1.2.4.5.1 1 .1 1.3.1.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"
+              />
+            </svg>
+            <span>WHATSAPP</span>
+          </a>
+          {% endif %} {% if profile and profile.instagram %}
+          <a href="{{ profile.instagram }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
+            </svg>
+            <span>INSTAGRAM</span>
+          </a>
+          {% endif %} {% if profile and profile.linkedin %}
+          <a href="{{ profile.linkedin }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M5 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3.5 9h3v12h-3zM9 9h3v1.6c.6-1.1 1.7-1.9 3.3-1.9 3.4 0 4.2 2.2 4.2 5.1V21h-3v-6.4c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3V21H9z"
+              />
+            </svg>
+            <span>LINKEDIN</span>
+          </a>
+          {% endif %} {% if profile and profile.github %}
+          <a href="{{ profile.github }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 .8A11.2 11.2 0 0 0 8.5 22.6c.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 5.9 0c2.2-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2V22c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8z"
+              />
+            </svg>
+            <span>GITHUB</span>
+          </a>
+          {% endif %}
+        </div>
+      </section>
+    </main>
+    <nav class="mobile-bottom-nav">
+      <a href="#about">ABOUT</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#works">WORKS</a>
+      <a href="#resume">RESUME</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <footer>
+      © {% now "Y" %} MUHAMAD RIKI EFENDI
+      <a href="{% url 'dashboard' %}">ADMIN</a>
+    </footer>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
+
+<a class="social-email" href="mailto:{{ profile.email }}">
+
+<a class="social-whatsapp" href="https://wa.me/{{ profile.whatsapp }}"
+
+<a class="social-instagram" href="{{ profile.instagram }}"
+
+
+<a class="social-linkedin" href="{{ profile.linkedin }}"
+
+
+<a class="social-github" href="{{ profile.github }}"

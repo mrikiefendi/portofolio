@@ -1,0 +1,85 @@
+.navbar {
+  height: 76px;
+  padding: 0 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #050607ed;
+  border-bottom: 1px solid #ffffff0b;
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  font-family: "Barlow Condensed";
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -1px;
+}
+
+.brand span {
+  color: var(--cyan);
+}
+
+nav {
+  display: flex;
+  gap: 34px;
+}
+
+nav a,
+.eyebrow,
+small,
+.outline-btn,
+.solid-btn,
+.tags,
+footer {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+}
+
+nav a {
+  color: #aeb4b7;
+}
+
+nav a:hover,
+.cyan {
+  color: var(--cyan);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 24px;
+}
+
+.section {
+  padding: 115px 8vw;
+  max-width: 1500px;
+  margin: auto;
+}
+
+.hero h1,
+.hero h2,
+.section h2,
+.admin-main h1,
+.login-box h1 {
+  font-family: "Barlow Condensed";
+  font-size: clamp(54px, 7vw, 105px);
+  line-height: 0.88;
+  margin: 22px 0 28px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 8vw;
+  color: #677175;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,33 @@
+{% load static %}<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body class="admin-body">
+    <header class="navbar">
+      <a class="brand" href="/">M<span>RIKI EFENDI</span></a>
+      <nav>
+        <a href="/">LIHAT WEBSITE ↗</a><a href="/accounts/logout/">LOGOUT</a>
+      </nav>
+    </header>
+    <main class="admin-main">
+      <p class="eyebrow">CONTENT MANAGEMENT</p>
+      <h1>DASHBOARD <em>OVERVIEW.</em></h1>
+      <p class="muted">Kelola isi portfolio dari satu tempat.</p>
+      <div class="stats">
+        {% for name,count,slug in stats %}<a
+          class="stat"
+          href="{% url 'manage' slug %}"
+          ><small>{{ name }}</small><strong>{{ count }}</strong
+          ><span>Kelola data →</span></a
+        >{% endfor %}<a class="stat" href="{% url 'manage' 'profile' %}"
+          ><small>Profile</small><strong>↗</strong><span>Ubah profil →</span></a
+        >
+      </div>
+      <div class="admin-links"><a href="/admin/">BUKA DJANGO ADMIN ↗</a></div>
+    </main>
+  </body>
+</html>
