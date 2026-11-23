@@ -2,17 +2,25 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = "dev-only-change-this-key-before-deployment"
-DEBUG = True
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+if not SECRET_KEY:
+    if os.getenv("VERCEL"):
+        raise RuntimeError("SECRET_KEY belum diatur di Vercel.")
+    SECRET_KEY = "local-development-only-insecure-key"
+
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "portfolio-mrikiefendi.vercel.app",
+    ".vercel.app",
     ".informaticsstudents-projects.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://portfolio-mrikiefendi.vercel.app",
+    "https://*.vercel.app",
     "https://*.informaticsstudents-projects.vercel.app",
 ]
 
@@ -72,9 +80,11 @@ LANGUAGE_CODE = "id"
 TIME_ZONE = "Asia/Jakarta"
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-MEDIA_URL = "media/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "/accounts/login/"
