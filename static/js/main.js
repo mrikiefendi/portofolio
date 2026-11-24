@@ -15,8 +15,6 @@ if (toggle && nav) {
   });
 }
 
-// SMOOTH SCROLL REVEAL
-
 function initScrollReveal() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return;
@@ -114,7 +112,8 @@ if (hero) {
       x: 20,
       y: 14,
     },
-  ].filter((layer) => layer.element);
+  ]
+.filter((layer) => layer.element);
 
   if (window.matchMedia("(pointer: fine)").matches) {
     hero.addEventListener("pointermove", (event) => {

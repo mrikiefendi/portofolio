@@ -35,7 +35,6 @@ def home(request):
         },
     )
 
-
 @login_required
 def dashboard(request):
     stats = [
@@ -47,7 +46,6 @@ def dashboard(request):
     ]
     return render(request, "portfolio/dashboard.html", {"stats": stats})
 
-
 MODEL_MAP = {
     "profile": (Profile, ProfileForm, "Profil"),
     "skills": (Skill, SkillForm, "Skill"),
@@ -56,7 +54,6 @@ MODEL_MAP = {
     "experience": (Experience, ExperienceForm, "Experience"),
     "leadership": (Leadership, LeadershipForm, "Leadership"),
 }
-
 
 @login_required
 def manage_items(request, section):
